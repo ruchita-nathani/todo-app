@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %} Home{% endblock title %} 
+{% block title %} Home {% endblock title %} 
 {% block body %}
 
     <div class="container my-3">
@@ -20,7 +20,7 @@
     <div class="container my-3">
         <h2>Your Todos</h2>
         
-                {% if allTodo|length == 0 %}
+                {% if all_todo|length == 0 %}
                    
                 <div class="alert alert-dark" role="alert">
                     No Todos found. Add your first todo now!
@@ -38,7 +38,7 @@
                         </thead>
                         
                         <tbody>
-              {% for todo in allTodo %}
+              {% for todo in all_todo %}
               <tr>
                 <th scope="row">{{loop.index}}</th>
                 <td>{{todo.title}}</td>

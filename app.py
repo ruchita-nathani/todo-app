@@ -17,19 +17,18 @@ class Todo(db.Model):
         return f"{self.sno} - {self.title}"
 
 @app.route("/", methods=['GET', 'POST'])
-def show():
+def show_todo():
     if request.method == 'POST':
         title = request.form['title']
         decs = request.form['desc']  
         todo = Todo(title=title, decs=decs)
         db.session.add(todo)
         db.session.commit()
-    allTodo = Todo.query.all()
-    print(allTodo)
-    return render_template('index.html', allTodo=allTodo)
+    all_todo = Todo.query.all()
+    return render_template('index.html', all_todo=all_todo)
 
 @app.route("/update/<int:sno>", methods=['GET', 'POST'])
-def updtate(sno):
+def update_todo(sno):
     if request.method == 'POST':
         title = request.form['title']
         decs = request.form['desc']  
@@ -44,7 +43,7 @@ def updtate(sno):
     return render_template('update.html', todo=todo)
 
 @app.route("/delete/<int:sno>")
-def delete(sno):
+def delete_todo(sno):
     todo = Todo.query.filter_by(sno=sno).first()
     db.session.delete(todo)
     db.session.commit()
